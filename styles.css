@@ -1,0 +1,1222 @@
+/* ==========================================================================
+   ECU Tuning Landing Page - Design System
+   Colores: Fondo negro, Azul eléctrico, Blanco, Detalles grises
+   Tipografía: Bebas Neue (Títulos), Montserrat (Cuerpo/Subtítulos)
+   ========================================================================== */
+
+/* Variables de Color e Interfaz */
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #0b0c10;
+    --bg-card: #12131a;
+    
+    --primary: #00e5ff; /* Azul Eléctrico Vibrante */
+    --primary-hover: #00b8d4;
+    --primary-glow: rgba(0, 229, 255, 0.4);
+    
+    --accent-blue: #0052ff; /* Azul Eléctrico Profundo para CTA final */
+    --accent-glow: rgba(0, 82, 255, 0.5);
+
+    --text-main: #ffffff;
+    --text-muted: #a0a5b5;
+    --text-dark: #6e727e;
+    
+    --warning-bg: rgba(255, 179, 0, 0.08);
+    --warning-border: #ffb300;
+    
+    --border-subtle: #23252f;
+    --font-heading: 'Bebas Neue', 'Anton', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    --container-width: 1140px;
+    --border-radius: 12px;
+}
+
+/* Reset y Estilos Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-body);
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Contenedor */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Tipografías y Títulos */
+h1, h2, h3, h4 {
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    text-align: center;
+    margin-bottom: 48px;
+    color: var(--text-main);
+    font-weight: 400;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Clases de Control de Visibilidad */
+.mobile-only {
+    display: none !important;
+}
+
+.desktop-only {
+    display: flex !important;
+}
+
+/* ==========================================================================
+   Componentes Globales
+   ========================================================================== */
+
+/* Botón de Acción Principal (CTA) */
+.cta-button {
+    display: inline-block;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary) 0%, #0088ff 50%, var(--primary) 100%);
+    background-size: 200% auto; /* Permite deslizar el gradiente en hover */
+    background-position: left center;
+    color: #000000;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.15rem;
+    padding: 20px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--primary-glow);
+    animation: buttonPulseGlow 3s infinite ease-in-out; /* Pulso continuo en reposo */
+    transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-position 0.4s ease;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+    opacity: 0;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px) scale(1.02); /* Se eleva y expande levemente */
+    box-shadow: 0 12px 35px rgba(0, 229, 255, 0.6);
+    background-position: right center; /* Desplaza el gradiente suavemente */
+}
+
+.cta-button:hover::after {
+    left: 125%;
+    opacity: 1;
+}
+
+/* Sensación de Click Mecánico Instantáneo */
+.cta-button:active {
+    transform: translateY(2px) scale(0.97); /* Se hunde y contrae simulando pulsación */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important; /* Colapsa la sombra al tocar el fondo */
+    transition: all 0.08s ease !important; /* Respuesta de click ultra rápida */
+    filter: brightness(0.9);
+}
+
+/* Variación de Botón Azul Grande (CTA Final) */
+.cta-button.large-blue {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, #0099ff 50%, var(--accent-blue) 100%);
+    background-size: 200% auto;
+    background-position: left center;
+    color: #ffffff;
+    box-shadow: 0 8px 25px var(--accent-glow);
+    animation: bluePulseGlow 3s infinite ease-in-out;
+}
+
+.cta-button.large-blue:hover {
+    box-shadow: 0 12px 35px rgba(0, 82, 255, 0.75);
+}
+
+/* Animaciones de Pulso de Resplandor (Glow) */
+@keyframes buttonPulseGlow {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 30px rgba(0, 229, 255, 0.55);
+    }
+}
+
+@keyframes bluePulseGlow {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(0, 82, 255, 0.35);
+    }
+    50% {
+        box-shadow: 0 10px 30px rgba(0, 82, 255, 0.65);
+    }
+}
+
+/* Bloque de Prueba Social (Estrellas) */
+.rating-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.stars {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.rating-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Barra de Anuncios Superior
+   ========================================================================== */
+.top-announcement-bar {
+    background-color: var(--bg-secondary);
+    border-bottom: 2px solid var(--primary);
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);
+    position: relative;
+    z-index: 100;
+}
+
+.announcement-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.announcement-text {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: pulseText 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseText {
+    0%, 100% {
+        opacity: 1;
+        color: var(--text-main);
+    }
+    50% {
+        opacity: 0.9;
+        color: var(--primary); /* Alterna suavemente a azul eléctrico */
+    }
+}
+
+/* ==========================================================================
+   Sección 1: Hero Section
+   ========================================================================== */
+.hero {
+    position: relative;
+    padding: clamp(60px, 10vh, 120px) 0 80px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)), url('assets/garage_workshop_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+    line-height: 0.95;
+    margin-bottom: 16px;
+    font-weight: 400;
+}
+
+.hero-title .highlight {
+    color: var(--primary);
+    font-family: var(--font-heading);
+    display: inline-block;
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    max-width: 580px;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Caja de Oferta (Sin tarjeta, minimalista y centrada por defecto) */
+.offer-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    min-width: 220px;
+    position: relative;
+    padding: 0; /* Sin padding para mostrarse plano */
+    align-self: center; /* Centrado en el contenedor flex parent */
+    align-items: center; /* Centra los hijos horizontalmente */
+    text-align: center;
+}
+
+.offer-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.price-container {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.price {
+    font-size: 3.6rem; /* Aumentado masivamente para visibilidad destacada en escritorio */
+    font-weight: 800;
+    color: var(--primary);
+    font-family: var(--font-body);
+    line-height: 1;
+}
+
+.currency {
+    font-size: 1.4rem; /* Proporcional al precio */
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Estilos para el Contador Regresivo */
+.countdown-container {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px dashed var(--border-subtle);
+    padding-top: 16px;
+    align-items: center;
+    width: 100%;
+}
+
+.timer-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timer-clock {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary); /* Azul eléctrico integrado */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); /* Resplandor digital sutil */
+    font-family: monospace;
+    letter-spacing: 0.1em;
+}
+
+/* Lista de Trust Badges debajo del botón (Centrada como bloque con elementos alineados a la izquierda) */
+.trust-list {
+    list-style: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    width: auto;
+    margin: 24px auto 0 auto;
+    text-align: left;
+}
+
+.trust-list li {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+/* Imagen del Hero */
+.hero-image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 580px; /* Ancho elegante para la imagen centrada en escritorio */
+    margin: 24px auto 32px auto; /* Centrado con margen amplio */
+}
+
+.image-wrapper {
+    position: relative;
+    border-radius: 0; /* Mantiene el formato cuadrado de esquinas rectas */
+    overflow: hidden;
+    border: 2px solid var(--primary); /* Borde luminoso en azul eléctrico */
+    background-color: var(--bg-card);
+    /* Sistema de sombras de alta profundidad: resplandor neón azul y sombra negra de separación 3D */
+    box-shadow: 0 15px 45px rgba(0, 229, 255, 0.35), 
+                0 30px 80px rgba(0, 0, 0, 0.9);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    aspect-ratio: 1.4 / 1; /* Un poco más rectangular (relación 1.4:1) en escritorio */
+}
+
+.image-wrapper:hover {
+    box-shadow: 0 20px 60px rgba(0, 229, 255, 0.5), 
+                0 35px 90px rgba(0, 0, 0, 0.95);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.image-wrapper:hover .hero-image {
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   Sección 2: ¿Qué vas a aprender?
+   ========================================================================== */
+.learn-section {
+    padding: 80px 0;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 780px; /* Cuadrícula más estrecha y compacta en el centro */
+    margin: 0 auto;
+}
+
+.learn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 0; /* Sin padding en el contenedor para que la imagen toque los bordes */
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Oculta desbordamientos para que la imagen respete las esquinas redondeadas */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    max-width: 360px; /* Ancho acotado para un aspecto de tarjeta premium */
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.learn-item:hover {
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.12);
+    transform: translateY(-5px);
+}
+
+.learn-item .bullet {
+    font-size: 1.25rem;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.learn-card-thumb {
+    width: 100%;
+    height: 160px; /* Imagen de cabecera de la tarjeta */
+    object-fit: cover;
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.5s ease;
+}
+
+.learn-item:hover .learn-card-thumb {
+    transform: scale(1.04); /* Zoom suave interactivo */
+}
+
+.learn-text-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px; /* Padding interno para los textos */
+}
+
+.learn-text h3 {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+/* ==========================================================================
+   Sección 3: ¿Qué incluye el pack?
+   ========================================================================== */
+.includes-section {
+    padding: 80px 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.grid-4-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.include-card {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.include-card:hover {
+    transform: translateY(-4px);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.include-card h3 {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.include-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Sección 4: Cómo funciona
+   ========================================================================== */
+.steps-section {
+    padding: 80px 0;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.steps-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    gap: 20px;
+}
+
+.step-card {
+    flex: 1;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--border-radius);
+    padding: 32px 24px;
+    text-align: center;
+    z-index: 2;
+}
+
+.step-num {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+}
+
+.step-card h3 {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.step-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.step-arrow {
+    width: 40px;
+    height: 2px;
+    background-color: var(--border-subtle);
+    position: relative;
+}
+
+.step-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border: solid var(--border-subtle);
+    border-width: 2px 2px 0 0;
+    padding: 3px;
+}
+
+/* ==========================================================================
+   Sección: Opiniones de Alumnos (Prueba Social)
+   ========================================================================== */
+.reviews-section {
+    padding: 80px 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.review-card {
+    background-color: #ffffff; /* Fondo blanco tipo captura de Facebook */
+    border: 1px solid #ced0d4; /* Borde sutil de Facebook */
+    border-radius: 8px; /* Radio de esquina clásico de Facebook */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra suave para efecto flotante de captura */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Tipografía oficial de Facebook */
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.review-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.review-avatar {
+    width: 40px; /* Tamaño clásico de avatar de Facebook */
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.review-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.author-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.author-name {
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: #050505; /* Texto principal oscuro de Facebook */
+}
+
+.verified-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1877f2; /* Azul oficial de verificación de Facebook */
+    color: #ffffff;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 1;
+    margin-left: 2px;
+    cursor: default;
+}
+
+.author-info {
+    font-size: 0.81rem;
+    color: #65676b; /* Texto secundario gris de Facebook */
+    font-weight: 500;
+}
+
+.review-date {
+    font-size: 0.75rem;
+    color: #65676b;
+}
+
+.review-stars {
+    font-size: 0.8rem;
+    letter-spacing: 0;
+    color: #f1c40f; /* Estrellas doradas bien marcadas */
+    margin-top: -4px;
+}
+
+.review-body {
+    font-size: 0.93rem;
+    line-height: 1.4;
+    color: #050505; /* Cuerpo de texto oscuro de Facebook */
+    flex-grow: 1;
+    font-weight: 400;
+}
+
+.review-footer {
+    border-top: 1px solid #e4e6eb; /* Borde superior de sección de interacción de Facebook */
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.reactions-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.81rem;
+    color: #65676b;
+    font-weight: 500;
+    align-items: center;
+}
+
+/* Estilos de reacciones ultra realistas */
+.reactions-icons {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.reaction-badge-like {
+    background-color: #1877f2; /* Círculo azul de Me Gusta */
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
+    margin-right: -4px;
+    position: relative;
+    z-index: 3;
+}
+
+.reaction-badge-love {
+    background-color: #f02849; /* Círculo rojo de Me Encanta */
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
+    margin-right: -4px;
+    position: relative;
+    z-index: 2;
+}
+
+.reaction-badge-wow {
+    background-color: #f7b125; /* Círculo amarillo de Me Asombra */
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
+    margin-right: -4px;
+    position: relative;
+    z-index: 1;
+}
+
+.reaction-count {
+    margin-left: 8px;
+    color: #65676b;
+    font-size: 0.81rem;
+    font-weight: 500;
+}
+
+.comments-count {
+    color: #65676b;
+}
+
+.actions-row {
+    border-top: 1px solid #e4e6eb;
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.78rem; /* Reducido ligeramente para evitar desbordamiento y apilamiento */
+    font-weight: 600;
+    color: #65676b; /* Botones interactivos en gris de Facebook */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px; /* Espaciado interno reducido */
+    flex: 1;
+    padding: 6px 2px; /* Padding optimizado para prevenir el salto de línea vertical de los emojis */
+    border-radius: 4px;
+    white-space: nowrap; /* Evita que el emoji y el texto se apilen verticalmente */
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.action-btn:hover {
+    background-color: #f2f2f2;
+    color: #050505;
+}
+
+/* ==========================================================================
+   Sección 5: Importante (Advertencia)
+   ========================================================================== */
+.warning-section {
+    padding: 60px 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.warning-box {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background-color: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    padding: 24px 32px;
+    border-radius: var(--border-radius);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.warning-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.warning-content h3 {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--warning-border);
+    margin-bottom: 6px;
+}
+
+.warning-content p {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Sección 6: CTA Final
+   ========================================================================== */
+.final-cta {
+    padding: 100px 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 82, 255, 0.15) 0%, rgba(0, 0, 0, 0) 65%), var(--bg-secondary);
+    text-align: center;
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+}
+
+.cta-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    font-weight: 400;
+}
+
+.cta-desc {
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+    max-width: 600px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    padding: 48px 0;
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.footer p {
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+
+.footer-note {
+    color: var(--text-dark) !important;
+    font-size: 0.75rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Modal e Interacción
+   ========================================================================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 40px var(--primary-glow);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--text-main);
+}
+
+.modal-header h2 {
+    font-family: var(--font-body);
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.modal-body p {
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+.checkout-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.checkout-summary strong {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.payment-methods {
+    text-align: center;
+}
+
+.payment-methods p {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+}
+
+.payment-btn {
+    background-color: #009ee3; /* Color MercadoPago */
+    color: #ffffff;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.payment-btn:hover {
+    background-color: #0081bb;
+}
+
+/* ==========================================================================
+   Media Queries (Diseño Responsivo)
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .hero-subtitle {
+        margin-bottom: 24px;
+    }
+    
+    .hero-image-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 24px auto;
+    }
+
+    .image-wrapper {
+        aspect-ratio: 1 / 1; /* Mantiene el formato cuadrado original en móvil y tableta */
+    }
+
+    .price {
+        font-size: 2.5rem; /* Ajustado de forma equilibrada para móvil y tableta */
+    }
+
+    .currency {
+        font-size: 1.1rem;
+    }
+
+    .countdown-container {
+        align-items: center;
+    }
+    
+    .grid-4-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 24px;
+    }
+
+    .review-card {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rating-badge {
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .trust-list {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 12px;
+        width: auto;
+        margin: 24px auto 0 auto;
+        text-align: left;
+    }
+
+    .trust-list li {
+        justify-content: flex-start;
+    }
+
+    .grid-2-cols {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .learn-item {
+        flex-direction: column;
+        align-items: stretch; /* Estira la imagen en la tarjeta móvil */
+        padding: 0;
+        width: 100%;
+        max-width: 320px; /* Tarjeta más compacta en móvil para dejar más margen a los costados */
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .learn-card-thumb {
+        width: 100%;
+        height: 150px; /* Imagen superior de la tarjeta en móvil */
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+
+    .learn-text-container {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .steps-flow {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .step-card {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
+        height: 20px;
+        margin: -10px 0;
+        align-self: center;
+    }
+    
+    .warning-box {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        padding: 24px 16px;
+    }
+    
+    .warning-icon {
+        margin-bottom: 12px;
+        align-self: center;
+    }
+
+    .warning-content {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .grid-4-cols {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .include-card {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    
+    .hero-title {
+        font-size: 3.3rem; /* Incrementado un poco más para un aspecto deportivo y robusto en móviles */
+    }
+    
+    .cta-button {
+        font-size: 1rem;
+        padding: 16px 24px;
+    }
+}
