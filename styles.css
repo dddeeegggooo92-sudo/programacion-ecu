@@ -1208,7 +1208,7 @@ summary.faq-question::-webkit-details-marker {
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: clamp(1.8rem, 6vw, 2.5rem); /* Proporcional para Montserrat Black en tablets */
+        font-size: clamp(2.2rem, 7vw, 3.2rem); /* Aumentado de forma equilibrada para tablets */
     }
 
     .rating-badge {
@@ -1313,7 +1313,7 @@ summary.faq-question::-webkit-details-marker {
     }
     
     .hero-title {
-        font-size: clamp(1.4rem, 6.5vw, 2rem); /* Proporcional para Montserrat Black en móviles */
+        font-size: clamp(1.8rem, 7.8vw, 2.6rem); /* Aumentado para mayor impacto visual en móviles */
     }
     
     .cta-button {
