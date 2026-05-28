@@ -65,7 +65,7 @@ body {
 h1, h2, h3, h4 {
     color: var(--text-main);
     text-transform: uppercase;
-    letter-spacing: -0.02em; /* Compacto y agresivo de marca deportiva */
+    letter-spacing: 0.02em; /* Cambiado a positivo para mejorar la legibilidad */
 }
 
 .section-title {
@@ -75,7 +75,7 @@ h1, h2, h3, h4 {
     margin-bottom: 48px;
     color: var(--text-main);
     font-weight: 900; /* Extra negrita / Black */
-    letter-spacing: -0.03em;
+    letter-spacing: 0.02em; /* Espaciado que separa las letras para lectura clara */
 }
 
 p {
@@ -295,10 +295,10 @@ p {
 .hero-title {
     font-family: var(--font-heading);
     font-size: clamp(2.3rem, 5.8vw, 4.3rem); /* Proporcional para Montserrat Black */
-    line-height: 0.95;
+    line-height: 1.05; /* Aumentado ligeramente para mayor legibilidad vertical */
     margin-bottom: 16px;
     font-weight: 900; /* Extra negrita / Black */
-    letter-spacing: -0.03em;
+    letter-spacing: 0.02em; /* Espaciado que separa las letras para lectura clara */
 }
 
 .hero-title .highlight {
@@ -1019,7 +1019,7 @@ summary.faq-question::-webkit-details-marker {
     line-height: 1.05;
     margin-bottom: 16px;
     font-weight: 900; /* Extra negrita / Black */
-    letter-spacing: -0.03em;
+    letter-spacing: 0.02em; /* Espaciado que separa las letras para lectura clara */
 }
 
 .cta-desc {
