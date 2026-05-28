@@ -1208,7 +1208,7 @@ summary.faq-question::-webkit-details-marker {
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: clamp(2.2rem, 7vw, 3.2rem); /* Aumentado de forma equilibrada para tablets */
+        font-size: clamp(2.4rem, 7.5vw, 3.5rem); /* Incrementado ligeramente para tablets */
     }
 
     .rating-badge {
@@ -1313,7 +1313,7 @@ summary.faq-question::-webkit-details-marker {
     }
     
     .hero-title {
-        font-size: clamp(1.8rem, 7.8vw, 2.6rem); /* Aumentado para mayor impacto visual en móviles */
+        font-size: clamp(2.1rem, 8.5vw, 2.9rem); /* Aumentado un poco más para mayor presencia en móviles */
     }
     
     .cta-button {
