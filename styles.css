@@ -1539,8 +1539,12 @@ summary.adjustment-header::-webkit-details-marker {
    Sección: Vehículos Compatibles
    ========================================================================== */
 .compatible-vehicles {
-    padding: 80px 0;
-    background-color: var(--bg-primary);
+    position: relative;
+    padding: 100px 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 82, 255, 0.45) 50%, rgba(0, 0, 0, 0.92)), url('assets/compatible_vehicles_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -1553,7 +1557,9 @@ summary.adjustment-header::-webkit-details-marker {
 }
 
 .vehicle-card {
-    background-color: var(--bg-card);
+    background-color: rgba(18, 19, 26, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border-subtle);
     border-radius: var(--border-radius);
     padding: 28px 24px;
@@ -1562,13 +1568,14 @@ summary.adjustment-header::-webkit-details-marker {
     gap: 16px;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .vehicle-card:hover {
     border-color: var(--primary);
+    background-color: rgba(18, 19, 26, 0.92);
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.1);
+    box-shadow: 0 12px 30px rgba(0, 229, 255, 0.15);
 }
 
 .veh-icon {
