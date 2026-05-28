@@ -1207,6 +1207,10 @@ summary.faq-question::-webkit-details-marker {
 }
 
 @media (max-width: 768px) {
+    .hero-title {
+        font-size: clamp(1.8rem, 6vw, 2.5rem); /* Proporcional para Montserrat Black en tablets */
+    }
+
     .rating-badge {
         flex-direction: column;
         gap: 6px;
@@ -1309,7 +1313,7 @@ summary.faq-question::-webkit-details-marker {
     }
     
     .hero-title {
-        font-size: 3.3rem; /* Incrementado un poco más para un aspecto deportivo y robusto en móviles */
+        font-size: clamp(1.4rem, 6.5vw, 2rem); /* Proporcional para Montserrat Black en móviles */
     }
     
     .cta-button {
