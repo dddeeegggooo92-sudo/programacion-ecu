@@ -25,7 +25,7 @@
     --warning-border: #ffb300;
     
     --border-subtle: #23252f;
-    --font-heading: 'Bebas Neue', 'Anton', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Montserrat', sans-serif;
     
     --container-width: 1140px;
@@ -65,16 +65,17 @@ body {
 h1, h2, h3, h4 {
     color: var(--text-main);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: -0.02em; /* Compacto y agresivo de marca deportiva */
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    font-size: clamp(1.8rem, 4.5vw, 3rem); /* Reducido para compensar el gran ancho de Montserrat Black */
     text-align: center;
     margin-bottom: 48px;
     color: var(--text-main);
-    font-weight: 400;
+    font-weight: 900; /* Extra negrita / Black */
+    letter-spacing: -0.03em;
 }
 
 p {
@@ -293,10 +294,11 @@ p {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+    font-size: clamp(2.3rem, 5.8vw, 4.3rem); /* Proporcional para Montserrat Black */
     line-height: 0.95;
     margin-bottom: 16px;
-    font-weight: 400;
+    font-weight: 900; /* Extra negrita / Black */
+    letter-spacing: -0.03em;
 }
 
 .hero-title .highlight {
@@ -1013,10 +1015,11 @@ summary.faq-question::-webkit-details-marker {
 
 .cta-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-size: clamp(1.8rem, 4.5vw, 3rem); /* Proporcional para Montserrat Black */
     line-height: 1.05;
     margin-bottom: 16px;
-    font-weight: 400;
+    font-weight: 900; /* Extra negrita / Black */
+    letter-spacing: -0.03em;
 }
 
 .cta-desc {
